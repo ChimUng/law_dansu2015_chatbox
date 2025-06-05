@@ -1,0 +1,18 @@
+# Ignore Python environment
+*.pyc
+__pycache__/
+.env
+
+# React - ignore node_modules and build
+traffic-law-frontend/node_modules/
+traffic-law-frontend/build/
+traffic-law-frontend/.env.local
+traffic-law-frontend/.env.development.local
+traffic-law-frontend/.env.production.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log

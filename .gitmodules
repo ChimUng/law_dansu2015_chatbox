@@ -1,0 +1,3 @@
+[submodule "law_dansu2015_frontend"]
+	path = law_dansu2015_frontend
+	url = https://github.com/ChimUng/law_dansu2015_frontend
