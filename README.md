@@ -1,4 +1,4 @@
-A website (built during a Hackathon organized by SGU) to support learning my "Pháp Luật Đại Cương" subject more effectively: 
+A website support learning my "Pháp Luật Đại Cương" subject more effectively: 
 
    - Description: A chatbot web app like Gemini that allows users to ask questions related to the 2015 Civil Code.  
    - Integrated AI Q&A using Gemini API.  
