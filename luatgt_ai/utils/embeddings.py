@@ -29,7 +29,9 @@ class TransformersEmbeddings(Embeddings):
         
       with torch.no_grad():
         outputs = self.model(**inputs)
-        embeddings = outputs.last_hidden_state.mean(dim=1)
+        token_embeddings = outputs.last_hidden_state
+        attention_mask = inputs["attention_mask"].unsqueeze(-1).expand(token_embeddings.size()).float()
+        embeddings = (token_embeddings * attention_mask).sum(dim=1) / attention_mask.sum(dim=1).clamp(min=1e-9)
         embeddings = torch.nn.functional.normalize(embeddings, p=2, dim=1)
       all_embeddings.append(embeddings.cpu().numpy())
       del inputs, outputs, embeddings

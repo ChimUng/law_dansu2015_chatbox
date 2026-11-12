@@ -1,0 +1,36 @@
+{
+  "corpora": [
+    {
+      "id": "bl_ds_2015",
+      "name": "Bộ luật Dân sự 2015",
+      "document_id": "91/2015/QH13",
+      "source_file": "legal_dansu_2.pdf",
+      "expected_articles": 689,
+      "role": "primary",
+      "enabled": true,
+      "ocr_mode": "auto"
+    },
+    {
+      "id": "giao_thong_2008",
+      "name": "Luật Giao thông đường bộ 2008",
+      "document_id": "23/2008/QH12",
+      "source_file": "road_traffic_law_2008.pdf",
+      "expected_articles": 89,
+      "role": "auxiliary",
+      "enabled": false,
+      "ocr_mode": "auto",
+      "activation_note": "Chỉ giữ để kiểm thử ingest/index. Luật 23/2008/QH12 đã hết hiệu lực từ 01/01/2025; không được bật để trả lời người dùng."
+    },
+    {
+      "id": "giao_thong_2024_ocr_demo",
+      "name": "Tài liệu giao thông 2024 (OCR demo)",
+      "document_id": "traffic_2024_demo",
+      "source_file": "road_traffic_law_2024.pdf",
+      "expected_articles": null,
+      "role": "ocr_demo",
+      "enabled": false,
+      "ocr_mode": "auto",
+      "activation_note": "Chỉ dùng để trình diễn pipeline OCR. Không được bật làm nguồn pháp lý trước khi xác minh văn bản, hiệu lực và kết quả OCR."
+    }
+  ]
+}
