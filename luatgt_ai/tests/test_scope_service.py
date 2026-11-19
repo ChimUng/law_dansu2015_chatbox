@@ -21,3 +21,8 @@ def test_traffic_penalty_is_outside_civil_assistant_scope():
 def test_clearly_non_legal_question_is_rejected_before_retrieval():
     decision = classify_query("Thời tiết hôm nay thế nào?")
     assert decision.scope == QueryScope.OUT_OF_SCOPE
+
+
+def test_divorce_procedure_is_rejected_before_civil_retrieval():
+    decision = classify_query("Muốn đơn phương ly hôn thì cần chuẩn bị giấy tờ gì?")
+    assert decision.scope == QueryScope.OUT_OF_SCOPE

@@ -19,6 +19,7 @@ import fitz
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 from services.corpus_registry import get_corpus  # noqa: E402
+from services.legal_taxonomy import enrich_articles  # noqa: E402
 
 
 ARTICLE_RE = re.compile(r"^Điều\s+(\d+)\.\s*(.*)$", re.IGNORECASE)
@@ -160,7 +161,7 @@ def main() -> None:
     except RuntimeError as error:
         print(f"Import stopped: {error}")
         raise SystemExit(2) from None
-    articles = parse_articles(page_records)
+    articles = enrich_articles(parse_articles(page_records))
     validation_errors = validate_articles(articles, corpus.expected_articles)
     if validation_errors:
         raise RuntimeError("Import bị dừng: " + " ".join(validation_errors))

@@ -14,3 +14,4 @@ class Response(BaseModel):
   answer: str
   relevant_laws: List[Law]
   scope: str = "civil"
+  retrieval_trace: dict | None = None

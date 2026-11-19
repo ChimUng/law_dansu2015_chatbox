@@ -1,5 +1,9 @@
+import logging
 from typing import List
 from core.config import settings
+
+
+logger = logging.getLogger(__name__)
 
 def get_gemini_response(question: str, relevant_laws: List[dict]) -> str:
     if not settings.GEMINI_API_KEY:
@@ -34,5 +38,11 @@ def get_gemini_response(question: str, relevant_laws: List[dict]) -> str:
         ai_model = genai.GenerativeModel(settings.GEMINI_MODEL_NAME)
         response = ai_model.generate_content(prompt)
         return response.text.strip()
-    except Exception:
-        return "Có lỗi xảy ra khi tạo câu trả lời, vui lòng thử lại sau."
+    except Exception as error:
+        # Do not expose the API key to the browser. The terminal gets the
+        # provider detail needed to diagnose a wrong model, key, or quota.
+        logger.exception("Gemini generation failed: %s", error)
+        return (
+            "Đã tìm được điều luật liên quan, nhưng Gemini chưa tạo được phần "
+            "diễn giải. Hãy xem nguồn bên dưới và kiểm tra lỗi Gemini ở terminal."
+        )

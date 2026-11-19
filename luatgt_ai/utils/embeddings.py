@@ -1,3 +1,9 @@
+import os
+
+# FAISS and PyTorch can load different OpenMP runtimes on Windows. Set this
+# before importing either native library to prevent OMP Error #15 on later chats.
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
+
 import torch
 from transformers import AutoTokenizer, AutoModel
 from langchain_core.embeddings import Embeddings

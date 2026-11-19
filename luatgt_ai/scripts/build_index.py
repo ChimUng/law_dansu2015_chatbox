@@ -44,14 +44,21 @@ def build_chunks(corpus, articles: list[dict]) -> list[dict]:
             if unit["clause_no"] is not None:
                 prefix += f" Khoản {unit['clause_no']}."
             for part_number, part in enumerate(split_long_text(unit["content"]), start=1):
+                chunk_id = (
+                    f"{corpus.id}-{article['article_no']}-"
+                    f"{unit['clause_no'] or 'article'}-{part_number}"
+                )
                 chunks.append({
                     "text": f"{prefix}\n{part}",
                     "metadata": {
+                        "chunk_id": chunk_id,
                         "corpus_id": corpus.id,
                         "source_name": corpus.name,
                         "document_id": corpus.document_id,
                         "article": article["article"],
                         "article_no": article["article_no"],
+                        "article_title": article.get("title", ""),
+                        "article_keywords": article.get("keywords", []),
                         "clause_no": unit["clause_no"],
                         "page_start": article["page_start"],
                         "page_end": article["page_end"],
